@@ -35,6 +35,9 @@
                     <DataTemplate>
 
                         <Grid Padding="10">
+
+                            <RoundRectangle/>
+
                             <VerticalStackLayout Padding="15" Spacing="10">
 
                                 <Label StyleClass="LightBlue" 
@@ -47,6 +50,7 @@
                                              ProgressColor="{Binding Color, Converter={StaticResource ColorConverter}}"/>
 
                             </VerticalStackLayout>
+                            
                         </Grid>
                         
                     </DataTemplate>
