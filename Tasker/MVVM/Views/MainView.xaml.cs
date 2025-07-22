@@ -8,6 +8,13 @@ public partial class MainView : ContentPage
 	{
 		InitializeComponent();
 
-		BindingContext = new MainViewModel();
+		BindingContext = mainViewModel;
+    }
+
+    private MainViewModel mainViewModel = new MainViewModel();
+
+    private void checkBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        mainViewModel.UpdateData();
     }
 }

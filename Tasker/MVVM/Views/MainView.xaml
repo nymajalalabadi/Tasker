@@ -61,7 +61,48 @@
             
         </Grid>
 
-        <Grid Grid.Row="2" BackgroundColor="DarkGoldenrod">
+        <Grid Grid.Row="2" RowDefinitions=".2*, .8*">
+            
+            <Label Grid.Row="0"
+                   StyleClass="LightBlue, SubHeader" 
+                   Text="Pending Tasks"/>
+            
+            <CollectionView Grid.Row="1"
+                            ItemsSource="{Binding Tasks}">
+                
+                <CollectionView.ItemTemplate>
+                    
+                    <DataTemplate>
+
+                        <Frame BorderColor="Transparent">
+                            
+                            <HorizontalStackLayout>
+                                
+                                <CheckBox  x:Name="checkBox"
+                                           IsChecked="{Binding Completed}"
+                                           CheckedChanged="checkBox_CheckedChanged"
+                                           VerticalOptions="Center"
+                                           Color="{Binding TaskColor, Converter={StaticResource ColorConverter}}"/>
+
+                                <Label Text="{Binding TaskName}" VerticalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" 
+                                                     Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}" 
+                                                     Value="True">
+                                            <Setter Property="TextDecorations" Value="Strikethrough" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                            </HorizontalStackLayout>
+                            
+                        </Frame>
+                        
+                    </DataTemplate>
+                    
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
 
         </Grid>
 
