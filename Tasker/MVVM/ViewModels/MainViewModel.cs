@@ -1,5 +1,6 @@
 ﻿using PropertyChanged;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using Tasker.MVVM.Models;
 
 namespace Tasker.MVVM.ViewModels
@@ -10,11 +11,19 @@ namespace Tasker.MVVM.ViewModels
         public MainViewModel()
         {
             FillData();
+            Tasks.CollectionChanged += Tasks_CollectionChanged;
         }
+
 
         public ObservableCollection<Category> Categories { get; set; }
 
         public ObservableCollection<MyTask> Tasks { get; set; }
+
+
+        private void Tasks_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            UpdateData();
+        }
 
 
         private void FillData()

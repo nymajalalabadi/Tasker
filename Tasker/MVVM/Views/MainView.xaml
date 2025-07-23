@@ -68,7 +68,8 @@
                    Text="Pending Tasks"/>
             
             <CollectionView Grid.Row="1"
-                            ItemsSource="{Binding Tasks}">
+                            ItemsSource="{Binding Tasks}"
+                            ItemsUpdatingScrollMode="KeepLastItemInView">
                 
                 <CollectionView.ItemTemplate>
                     
