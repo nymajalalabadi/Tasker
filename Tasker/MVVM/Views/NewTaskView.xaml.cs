@@ -11,7 +11,7 @@ public partial class NewTaskView : ContentPage
 		InitializeComponent();
 	}
 
-    private async Task AddTaskClicked(object sender, EventArgs e)
+    private async void AddTaskClicked(object sender, EventArgs e)
     {
 		var viewModel = BindingContext as NewTaskViewModel;
 
@@ -38,4 +38,28 @@ public partial class NewTaskView : ContentPage
 			await DisplayAlert("Error", "Please select a category.", "OK");
         }
     }
+
+    private async void AddCategoryClicked(object sender, EventArgs e)
+    {
+		var viewModel = BindingContext as NewTaskViewModel;
+
+		string newCategoryName = await DisplayPromptAsync("New Category", "Enter the new  category name:", maxLength:15, keyboard:Keyboard.Text);
+
+		var random = new Random();
+
+		if (!string.IsNullOrEmpty(newCategoryName))
+		{
+			var newCategory = new Category
+			{
+				Id = viewModel.Categories.Max(c => c.Id) + 1,
+				CategoryName = newCategoryName,
+				Color = Color.FromRgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)).ToHex(),
+			};
+
+            viewModel.Categories.Add(newCategory);
+
+			await DisplayAlert("Success", "Category added successfully.", "OK");
+        }
+    }
+
 }
