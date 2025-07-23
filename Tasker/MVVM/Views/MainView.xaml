@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tasker.MVVM.Views.MainView"
              xmlns:converters="clr-namespace:Tasker.Converter"
-             Title="MainView">
+             Title="Tasker">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -105,6 +105,11 @@
             </CollectionView>
 
         </Grid>
+
+        <Button Text="+"
+                Style="{StaticResource CircularButton}"
+                Clicked="Button_Clicked"
+                Grid.RowSpan="2" />
 
     </Grid>
     
